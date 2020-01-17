@@ -1,0 +1,10 @@
+@import '../../override/darkVar.less';
+@import './mixin.less';
+
+@btn-prefix-cls: ~"@{ant-prefix}-btn";
+
+.theme-dark .@{btn-prefix-cls},
+body .theme-dark .@{btn-prefix-cls},
+body .theme-dark.@{btn-prefix-cls} {
+    .btn-all();
+}

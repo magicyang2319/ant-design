@@ -1,0 +1,53 @@
+@ant-prefix: 'ant';
+@input-prefix-cls: ~"@{ant-prefix}-input";
+
+.input-disabled() {
+    &[disabled] {
+        color: @disabled-color;
+        background-color: fade(@disabled-color, 20);
+        border-color: @disabled-color;
+    }
+}
+
+.input-default() {
+    color: @input-color;
+    background-color: @input-bg;
+    border-color: @input-border-color;
+
+    &::placeholder {
+        color: @input-placeholder-color;
+    }
+
+    .input-disabled();
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        border-color: @input-hover-border-color;
+
+        .input-disabled();
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px fade(@input-hover-border-color, 20);
+    }
+
+    &-group-addon {
+        color: @input-color;
+        border-color: @input-border-color;
+        background-color: @input-bg;
+
+        .ant-select {
+            &,
+            &.ant-select-focused .ant-select-selection,
+            .ant-select-arrow {
+                color: @input-color !important;
+            }
+        }
+    }
+}
+
+.input-all() {
+    .input-default();
+}

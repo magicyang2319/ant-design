@@ -1,0 +1,27 @@
+@import '../../override/lightVar.less';
+@import './mixin.less';
+
+@input-placeholder-color:      #9b9b9b;
+
+@input-color:                  #4a4a4a;
+@input-border-color:           #4a4a4a;
+@input-bg:                     #fff;
+@input-addon-bg:               #fff;
+
+@input-active-color:           #4a4a4a;
+@input-active-border-color:    #4a4a4a;
+
+@input-hover-color:            @primary-color;
+@input-hover-border-color:     @primary-color;
+
+@input-disabled-color:         #9b9b9b;
+@input-disabled-border-color:  #9b9b9b;
+@input-disabled-bg:            #ededed;
+
+@input-prefix-cls: ~"@{ant-prefix}-input";
+
+.theme-light .@{input-prefix-cls},
+body .theme-light .@{input-prefix-cls},
+body .theme-light.@{input-prefix-cls} {
+    .input-all();
+}

@@ -36,15 +36,39 @@ function initDocSearch(locale) {
   });
 }
 
+const defaultThemeShortName = 'dark';
+
+const availableThemes = {
+  light: {
+    caption: '浅色背景，蓝色元素',
+    cssClassName: 'theme-light',
+  },
+  dark: {
+    caption: '深色背景，绿色元素',
+    cssClassName: 'theme-dark',
+  },
+};
+
 class Header extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired,
     isMobile: PropTypes.bool.isRequired,
   };
 
-  state = {
-    menuVisible: false,
-  };
+  constructor() {
+    super();
+
+    const currentThemeShortName = localStorage.getItem('themeShortName') || defaultThemeShortName;
+
+    this.state = {
+      inputValue: '',
+      menuVisible: false,
+      menuMode: 'horizontal',
+      currentThemeShortName,
+    };
+
+    this.handleThemeSelectorChange(currentThemeShortName);
+  }
 
   componentDidMount() {
     const { intl } = this.props;
@@ -103,6 +127,20 @@ class Header extends React.Component {
         utils.getLocalizedPathname(pathname, !utils.isZhCN(pathname)),
       );
   };
+
+  handleThemeSelectorChange = (themeShortNameToApply) => {
+    Object.keys(availableThemes).forEach((themeShortName) => {
+      if (themeShortName !== themeShortNameToApply) {
+        document.body.classList.remove(availableThemes[themeShortName].cssClassName);
+      }
+    });
+
+    document.body.classList.add(availableThemes[themeShortNameToApply].cssClassName);
+    this.setState({
+      currentThemeShortName: themeShortNameToApply,
+    });
+    window.localStorage.setItem('themeShortName', themeShortNameToApply);
+  }
 
   render() {
     const { menuVisible } = this.state;
@@ -231,6 +269,29 @@ class Header extends React.Component {
     ];
 
     const searchPlaceholder = locale === 'zh-CN' ? '在 ant.design 中搜索' : 'Search in ant.design';
+
+    const themeSelector = (
+      <Select id="theme-selector"
+        defaultValue={this.state.currentThemeShortName}
+        onChange={this.handleThemeSelectorChange}
+      >
+        {Object.keys(availableThemes).map((themeShortName) => {
+          return (
+            <Option
+              value={themeShortName}
+              key={themeShortName}
+              className="theme-selector-option"
+              title={`Swith to Theme ${themeShortName}`}
+            >
+              <span className={`theme-visual-representation ${themeShortName}`} />
+              <span className="label">{availableThemes[themeShortName].caption}</span>
+            </Option>
+          );
+        })
+        }
+      </Select>
+    );
+
     return (
       <header id="header" className={headerClassName}>
         {isMobile && (
@@ -271,6 +332,7 @@ class Header extends React.Component {
               />
             </div>
             {!isMobile && menu}
+            <div id="theme-selector-container">{themeSelector}</div>
           </Col>
         </Row>
       </header>

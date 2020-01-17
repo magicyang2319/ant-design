@@ -1,0 +1,110 @@
+@ant-prefix: 'ant';
+@btn-prefix-cls: ~"@{ant-prefix}-btn";
+
+.btn-disabled() {
+    &[disabled] {
+        color: @disabled-color;
+        background-color: fade(@disabled-color, 20);
+        border-color: @disabled-color;
+    }
+}
+
+.btn-default() {
+    color: @primary-color;
+    background-color: transparent;
+    border-color: @primary-color;
+
+    .btn-disabled();
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: fade(@primary-color, 20);
+
+        .btn-disabled();
+    }
+}
+
+.btn-primary() {
+    color: white;
+    background-color: @primary-color;
+    border-color: @primary-color;
+
+    &[disabled] {
+        color: white;
+        background-color: @disabled-color;
+        border-color: @disabled-color;
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: @hover-primary-color;
+        border-color: @hover-primary-color;
+
+        &[disabled] {
+            color: white;
+            background-color: @disabled-color;
+            border-color: @disabled-color;
+        }
+    }
+}
+
+.btn-danger() {
+    color: @error-color;
+    border-color: @error-color;
+
+    .btn-disabled();
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: fade(@error-color, 20);
+
+        .btn-disabled();
+    }
+
+    &.ant-btn-loading::before {
+        display: none;
+    }
+}
+
+.btn-link() {
+    border-color: transparent;
+
+    &[disabled] {
+        border-color: transparent;
+        color: @disabled-color;
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: transparent;
+
+        &[disabled] {
+            border-color: transparent;
+            color: @disabled-color;
+        }
+    }
+}
+
+.btn-all() {
+    .btn-default();
+
+    &-primary {
+        .btn-primary();
+    }
+
+    &-danger {
+        .btn-danger();
+    }
+
+    &-link {
+        .btn-link();
+    }
+}

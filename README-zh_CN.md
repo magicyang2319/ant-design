@@ -118,7 +118,7 @@ $ npm install
 $ npm start
 ```
 
-打开浏览器访问 http://127.0.0.1:8001 ，更多[本地开发文档](https://github.com/ant-design/ant-design/wiki/Development)。
+打开浏览器访问 http://127.0.0.1:8002 ，更多[本地开发文档](https://github.com/ant-design/ant-design/wiki/Development)。
 
 ## 🤝 参与共建 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 

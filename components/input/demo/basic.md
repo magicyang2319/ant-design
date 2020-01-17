@@ -16,5 +16,9 @@ Basic usage example.
 ```jsx
 import { Input } from 'antd';
 
-ReactDOM.render(<Input placeholder="Basic usage" />, mountNode);
+ReactDOM.render(<div>
+    <Input placeholder="Basic usage" />
+    <p>&nbsp;</p>
+    <Input placeholder="Disabled" disabled/>
+</div>, mountNode);
 ```

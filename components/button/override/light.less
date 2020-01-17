@@ -1,0 +1,10 @@
+@import '../../override/lightVar.less';
+@import './mixin.less';
+
+@btn-prefix-cls: ~"@{ant-prefix}-btn";
+
+.theme-light .@{btn-prefix-cls},
+body .theme-light .@{btn-prefix-cls},
+body .theme-light.@{btn-prefix-cls} {
+    .btn-all();
+}
